@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FacturaDTO {
 
-	private int impuesto;
+	private Double impuesto;
 	private ClienteDTO cliente;
 	private List<ProductoDTO> productos;
 	private List<PagoDTO> medios_pago;

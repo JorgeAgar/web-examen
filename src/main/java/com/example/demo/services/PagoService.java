@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,16 @@ public class PagoService {
 
     public List<Pago> getAllPagos() {
         return pagoRepository.findAll();
+    }
+    
+    public List<Pago> getPagosByCompra(int idCompra) {
+    	List<Pago> todos = getAllPagos();
+    	List<Pago> r = new LinkedList<Pago>();
+    	for(Pago p : todos) {
+    		if(p.getCompra().getId() == idCompra)
+    			r.add(p);
+    	}
+    	return r;
     }
 
     public Pago getPagoById(int id) {
