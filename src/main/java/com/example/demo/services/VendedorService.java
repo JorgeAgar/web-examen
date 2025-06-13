@@ -21,6 +21,15 @@ public class VendedorService {
     public List<Vendedor> getAllVendedores() {
         return vendedorRepository.findAll();
     }
+    
+    public Vendedor getVendedorByDoc(String doc) {
+    	List<Vendedor> todos = getAllVendedores();
+    	for(Vendedor v : todos) {
+    		if(v.getDocumento().equals(doc));
+    			return v;
+    	}
+    	return null;
+    }
 
     public Vendedor getVendedorById(int id) {
         return vendedorRepository.getReferenceById(id);
