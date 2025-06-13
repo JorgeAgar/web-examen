@@ -19,7 +19,7 @@ public class FacturaController {
 	FacturaService facturaService;
 
 	@GetMapping("/crear/{idTienda}")
-	public FacturaDTO procesarFactura(@PathVariable String idTienda, @RequestBody int idCliente) {
-		return facturaService.generarFactura(idCliente);
+	public FacturaDTO procesarFactura(@PathVariable String idTienda, @RequestBody FacturaDTO factura) {
+		return facturaService.generarFactura(idTienda, factura);
 	}
 }

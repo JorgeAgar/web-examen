@@ -25,6 +25,15 @@ public class ClienteService {
     public List<Cliente> getAllClientes() {
         return clienteRepository.findAll();
     }
+    
+    public Cliente getClienteByDoc(String doc) {
+    	List<Cliente> todos = getAllClientes();
+    	for(Cliente c : todos) {
+    		if(c.getDocumento().equals(doc))
+    			return c;
+    	}
+    	return null;
+    }
 
     public Cliente getClienteById(int id) {
         return clienteRepository.getReferenceById(id);

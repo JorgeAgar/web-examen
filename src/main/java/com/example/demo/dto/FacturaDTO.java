@@ -11,7 +11,7 @@ public class FacturaDTO {
 
 	private Double impuesto;
 	private ClienteDTO cliente;
-	private List<ProductoDTO> productos;
+	private List<ProductoFacturaDTO> productos;
 	private List<PagoDTO> medios_pago;
 	private VendedorDTO vendedor;
 	private CajeroDTO cajero;

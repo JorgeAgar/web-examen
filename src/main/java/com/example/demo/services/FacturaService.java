@@ -17,6 +17,7 @@ import com.example.demo.entities.Compra;
 import com.example.demo.entities.DetallesCompra;
 import com.example.demo.entities.Pago;
 import com.example.demo.entities.Producto;
+import com.example.demo.entities.Tienda;
 
 import lombok.NoArgsConstructor;
 
@@ -29,27 +30,15 @@ public class FacturaService {
 	
 	@Autowired
 	private PagoService pagoService;
+	
+	@Autowired
+	private TiendaService tiendaService;
 
-	public FacturaDTO generarFactura(int clienteId) {
-		Cliente cliente = clienteService.getClienteById(clienteId);
-		Compra compra = cliente.getCompras().get(0);
-		List<ProductoDTO> productos = new LinkedList<ProductoDTO>();
-		for(DetallesCompra d : compra.getDetallesCompra()) {
-			productos.add(new ProductoDTO(d.getProducto()));
-		}
-		List<Pago> pagos = pagoService.getPagosByCompra(compra.getId());
-		List<PagoDTO> pagosDTO = new LinkedList<PagoDTO>();
-		for(Pago p : pagos) {
-			pagosDTO.add(new PagoDTO(p));
-		}
+	public FacturaDTO generarFactura(int tiendaId, FacturaDTO factura) {
+		Tienda tienda = tiendaService.getTiendaById(tiendaId);
+		Cliente cliente = clienteService.getClienteByDoc(factura.getCliente().getDocumento());
+		List<DetallesCompra> detalles = new LinkedList<DetallesCompra>();
 		
-		FacturaDTO factura = new FacturaDTO();
-		factura.setCajero(new CajeroDTO(compra.getCajero()));
-		factura.setCliente(new ClienteDTO(cliente));
-		factura.setImpuesto(compra.getImpuestos());
-		factura.setMedios_pago(pagosDTO);
-		factura.setProductos(productos);
-		factura.setVendedor(new VendedorDTO(compra.getVendedor()));
-		return factura;
+		return new FacturaDTO();
 	}
 }
