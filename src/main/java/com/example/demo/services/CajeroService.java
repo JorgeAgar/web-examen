@@ -26,6 +26,15 @@ public class CajeroService {
 		return cajeroRepository.findAll();
 	}
 	
+	public Cajero getCajeroByToken(String token) {
+		List<Cajero> todos = getAllCajeros();
+		for(Cajero c : todos) {
+			if(c.getToken().equals(token))
+				return c;
+		}
+		return null;
+	}
+	
 	public Cajero getCajeroById(int id) {
 		return cajeroRepository.getReferenceById(id);
 	}
